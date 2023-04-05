@@ -37,6 +37,7 @@ public class FileUploadTest extends BaseClass{
 		click(myInfoPage.profileImg);
 		click(myInfoPage.addImg);
 		this.fileUpload("C:\\Users\\Admin\\Desktop\\Capture.PNG");
+		System.out.println("File Uploaded successfully...");
 	}
 
 }
