@@ -38,7 +38,7 @@ public class LoginTestExample extends BaseClass {
 		dropDrown(By.xpath("//input[@aria-owns=\"rc_select_0_list\"]"), "American");
 		driver.switchTo().frame(driver.findElement(By.xpath("//div[@class='ant-modal-wrap']]")));
 		scroll(500);
-		selectBirthdate(By.xpath(""), 12, "Jun", "2022");
+		//selectBirthdate(By.xpath(""), 12, "Jun", "2022");  //Method is removed from BaseClass
 		dropDrown(By.xpath("//input[@aria-owns='rc_select_1_list']"), "Male");
 		dropDrown(By.xpath("//input[@aria-controls='rc_select_2_list']"), "Single");
 		click(By.xpath("//span[contains(text(),'Save')]"));
