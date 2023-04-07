@@ -19,7 +19,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.reporter.ExtentReporter;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
-public class TestListners extends BaseClass implements ITestListener, ISuiteListener {
+public class TestListners implements ITestListener, ISuiteListener {
 
 //	String reportPath;
 //	ExtentReports extentReporter;
@@ -40,9 +40,11 @@ public class TestListners extends BaseClass implements ITestListener, ISuiteList
 		 * extentReporter = new ExtentReports();
 		 * extentReporter.attachReporter(sparkReporter);
 		 */
-		extentReporter.setSystemInfo("user", "Rohan More");
-		extentReporter.setSystemInfo("os", "windows");
-		extentReporter.setSystemInfo("environment", "QA");
+		/*
+		 * extentReporter.setSystemInfo("user", "Rohan More");
+		 * extentReporter.setSystemInfo("os", "windows");
+		 * extentReporter.setSystemInfo("environment", "QA");
+		 */
 //		String suiteName = suite.getName();
 //		System.out.println(suiteName);
 	}
@@ -74,7 +76,7 @@ public class TestListners extends BaseClass implements ITestListener, ISuiteList
 	@Override
 	public void onTestSuccess(ITestResult result) {
 		System.out.println("This is onTestSuccess of ITestResult from TestListners");
-		captureScreenShot(result);
+//		captureScreenShot(result);
 		
 		/*
 		 * System.out.println("ReportPath is "+ reportPath); String screenShotPath =
@@ -97,7 +99,7 @@ public class TestListners extends BaseClass implements ITestListener, ISuiteList
 	@Override
 	public void onTestFailure(ITestResult result) {
 		System.out.println("This is onTestFailure of ITestResult from TestListners");
-		captureScreenShot(result);
+//		captureScreenShot(result);
 		/*
 		 * String screenShot = reportPath + "/" + result.getMethod().getMethodName() +
 		 * ".jpg"; TakesScreenshot takesScreenshot = (TakesScreenshot) driver; File

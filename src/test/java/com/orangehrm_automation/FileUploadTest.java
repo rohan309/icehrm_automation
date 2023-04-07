@@ -1,11 +1,8 @@
 package com.orangehrm_automation;
 
-import java.io.IOException;
-
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import com.icecrm_automation.OrangeHrmTesting;
 import com.icecrm_automation.utility.BaseClass;
 import com.icecrm_automation.utility.PropertyHandling;
 import com.orangehrm_automation.pages.MyInfoPage;
