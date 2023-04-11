@@ -17,7 +17,6 @@ public class FileUploadTest extends BaseClass{
 	
 	@BeforeClass
 	public void beforClass() {
-		orangeHrmLoginPage = new OrageHrmLoginPage(driver);
 		myInfoPage = new MyInfoPage();
 		property = new PropertyHandling();
 		String username = property.getProperties("orangeHrmUN");
@@ -26,6 +25,7 @@ public class FileUploadTest extends BaseClass{
 		String url = property.getProperties("orangeHrmUrl");
 		launchBrowser(browser);
 		driver.get(url);
+		orangeHrmLoginPage = new OrageHrmLoginPage(driver);
 		orangeHrmLoginPage.login(username, password);
 		ExtentTestManager.getTest().info("successfully  login with valid  credentials");
 	}
