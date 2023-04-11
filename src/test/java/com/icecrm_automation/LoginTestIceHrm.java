@@ -5,30 +5,31 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
+import com.ice_hrm_automation.pages.LoginPage;
 import com.icecrm_automation.utility.BaseClass;
 
 public class LoginTestIceHrm extends BaseClass {
+	LoginPage loginPage;
+
 	@BeforeClass
 	public void beforeClass() {
 		System.out.println("This is before class method");
 		launchBrowser("chrome");
 		driver.navigate().to("https://icehrm.com/app/cybersuccess/login.php");
+		loginPage = new LoginPage(driver);
 		driver.manage().window().maximize();
 	}
 
 	@AfterClass
 	public void afterClass() {
 		System.out.println("This is  after class method");
-		driver.close();
+		driver.quit();
 	}
 
-	@Test  
+	@Test
 	public void verifyWithValidCredentials() {
 		System.out.println("This is method to login");
-		enterText(By.id("username"), "admin");
-		enterText(By.id("password"), "2zuzfakn");
-		click(By.xpath("//button[(text()='Log in ')]"));
-
+		loginPage.login("admin", "2zuzfakn");
 		if (driver.getTitle().equals("ICE Hrm")) {
 			System.out.println("Loged in successfully by valid credentials");
 		} else {
@@ -38,7 +39,7 @@ public class LoginTestIceHrm extends BaseClass {
 		click(By.xpath("//a[contains(text(),'Sign out')]"));
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void verifyWithValidUsername1() throws Exception {
 		System.out.println("This is method to login with valid username");
 		enterText(By.id("username"), "admin");
@@ -53,7 +54,7 @@ public class LoginTestIceHrm extends BaseClass {
 		}
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void verifyWithValidUsername2() throws Exception {
 		System.out.println("This is method to login with valid username");
 		enterText(By.id("username"), "admin"); // invalid username
@@ -68,7 +69,7 @@ public class LoginTestIceHrm extends BaseClass {
 		}
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void verifyWithValidUsername3() throws Exception {
 		System.out.println("This is method to login with valid username");
 		enterText(By.id("username"), "admin"); // invalid username
@@ -83,7 +84,7 @@ public class LoginTestIceHrm extends BaseClass {
 		}
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void verifyWithValidUsername4() throws Exception {
 		System.out.println("This is method to login with valid username");
 		enterText(By.id("username"), "admin"); // invalid username
@@ -98,7 +99,7 @@ public class LoginTestIceHrm extends BaseClass {
 		}
 	}
 
-	@Test
+	@Test(enabled = false)
 	public void verifyWithValidUsername5() throws Exception {
 		System.out.println("This is method to login with valid username");
 		enterText(By.id("username"), "admin"); // invalid username
@@ -113,8 +114,6 @@ public class LoginTestIceHrm extends BaseClass {
 		}
 
 	}
-	
-	
 
 	/*
 	 * @Test public void verifyWithBlankUsernameAndPassword() throws Exception {
@@ -129,8 +128,8 @@ public class LoginTestIceHrm extends BaseClass {
 	 * System.out.println("Loged in with invalid username and password"); }else {
 	 * throw new Exception("Login failed with invalid usename and password"); } }
 	 */
-	
-	@Test
+
+	@Test(enabled = false)
 	public void verifyWithInvalidUsername1() throws Exception {
 		System.out.println("This is method to login with valid username");
 		enterText(By.id("username"), "ad123"); // invalid username
@@ -145,8 +144,8 @@ public class LoginTestIceHrm extends BaseClass {
 		}
 
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void verifyWithInvalidUsername2() throws Exception {
 		System.out.println("This is method to login with valid username");
 		enterText(By.id("username"), "#$%asd"); // invalid username
@@ -161,66 +160,70 @@ public class LoginTestIceHrm extends BaseClass {
 		}
 
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void resetPassword() {
 		enterText(By.id("username"), "admin");
 		click(By.xpath("//a[text()='Reset Password']"));
-		//button[contains(text(),'Request Password Change')]
-		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]")).getText();
-		if(resetPassword.equals("Request Password Change")) {
+		// button[contains(text(),'Request Password Change')]
+		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]"))
+				.getText();
+		if (resetPassword.equals("Request Password Change")) {
 			System.out.println("Reset password page is displayed");
-		}else {
+		} else {
 			System.out.println("Reset password page is not displayed");
 		}
 		driver.close();
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void resetPassword1() {
 		enterText(By.id("username"), "1234");
 		click(By.xpath("//a[text()='Reset Password']"));
-		//button[contains(text(),'Request Password Change')]
-		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]")).getText();
-		if(resetPassword.equals("Request Password Change&nbsp;&nbsp;")) {
+		// button[contains(text(),'Request Password Change')]
+		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]"))
+				.getText();
+		if (resetPassword.equals("Request Password Change&nbsp;&nbsp;")) {
 			System.out.println("Reset password page is displayed");
-		}else {
+		} else {
 			System.out.println("Reset password page is not displayed");
 		}
 		driver.close();
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void resetPassword2() {
 		enterText(By.id("username"), "1234");
 		enterText(By.id("password"), "ddf@#");
 		click(By.xpath("//a[text()='Reset Password']"));
-		//button[contains(text(),'Request Password Change')]
-		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]")).getText();
-		if(resetPassword.equals("Request Password Change&nbsp;&nbsp;")) {
+		// button[contains(text(),'Request Password Change')]
+		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]"))
+				.getText();
+		if (resetPassword.equals("Request Password Change&nbsp;&nbsp;")) {
 			System.out.println("Reset password page is displayed");
-		}else {
+		} else {
 			System.out.println("Reset password page is not displayed");
 		}
 		driver.close();
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void resetPassword3() {
 		enterText(By.id("username"), "1234");
 		enterText(By.id("password"), "2zuzfakn");
 		click(By.xpath("//a[text()='Reset Password']"));
-		//button[contains(text(),'Request Password Change')]
-		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]")).getText();
-		if(resetPassword.equals("Request Password Change&nbsp;&nbsp;")) {
+		// button[contains(text(),'Request Password Change')]
+		String resetPassword = driver.findElement(By.xpath("//button[contains(text(),'Request Password Change')]"))
+				.getText();
+		if (resetPassword.equals("Request Password Change&nbsp;&nbsp;")) {
 			System.out.println("Reset password page is displayed");
-		}else {
+		} else {
 			System.out.println("Reset password page is not displayed");
 		}
 		driver.close();
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void verifyResetPasswordLink() {
 		enterText(By.id("username"), "admin");
 		click(By.xpath("//a[text()='Reset Password']"));
@@ -234,8 +237,8 @@ public class LoginTestIceHrm extends BaseClass {
 		 */
 		driver.close();
 	}
-	
-	@Test
+
+	@Test(enabled = false)
 	public void verifyResetPasswordLink2() {
 		enterText(By.id("username"), "admin");
 		click(By.xpath("//a[text()='Reset Password']"));

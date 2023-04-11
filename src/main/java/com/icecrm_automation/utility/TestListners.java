@@ -27,26 +27,6 @@ public class TestListners implements ITestListener, ISuiteListener {
 	@Override
 	public void onStart(ISuite suite) { // ISuiteListener
 		System.out.println("This is onStart of ISuite from TestListners");
-		/*
-		 * LocalDateTime dateTime = LocalDateTime.now(); String currentDateTime =
-		 * dateTime.format(DateTimeFormatter.ofPattern("dd_mm_yyyy_hh_mm")); reportPath
-		 * = System.getProperty("user.dir") + "/reports/" + "report_" + currentDateTime;
-		 * System.out.println("ReportPath is "+ reportPath); File file = new
-		 * File(reportPath); if (!file.exists()) { file.mkdir(); }
-		 */
-		/*
-		 * String htmlReport = reportPath + "/AutomationReport.html";
-		 * ExtentSparkReporter sparkReporter = new ExtentSparkReporter(htmlReport);
-		 * extentReporter = new ExtentReports();
-		 * extentReporter.attachReporter(sparkReporter);
-		 */
-		/*
-		 * extentReporter.setSystemInfo("user", "Rohan More");
-		 * extentReporter.setSystemInfo("os", "windows");
-		 * extentReporter.setSystemInfo("environment", "QA");
-		 */
-//		String suiteName = suite.getName();
-//		System.out.println(suiteName);
 	}
 
 	@Override
@@ -63,14 +43,15 @@ public class TestListners implements ITestListener, ISuiteListener {
 	@Override
 	public void onFinish(ITestContext context) {
 		System.out.println("This is onFinish of ITestContest from TestListners");
+		ExtentTestManager.endTest();
 	}
 
 	@Override
 	public void onTestStart(ITestResult result) {
 		System.out.println("This is onTestStart of ITestResult from TestListners");
 		String methodName = result.getMethod().getMethodName();
-//		String methodName = result.getName();
-		//log = extentReporter.createTest(methodName);
+		ExtentTestManager.createTest(methodName);
+		
 	}
 
 	@Override
@@ -99,6 +80,7 @@ public class TestListners implements ITestListener, ISuiteListener {
 	@Override
 	public void onTestFailure(ITestResult result) {
 		System.out.println("This is onTestFailure of ITestResult from TestListners");
+		ExtentTestManager.getTest().fail(result.getThrowable());
 //		captureScreenShot(result);
 		/*
 		 * String screenShot = reportPath + "/" + result.getMethod().getMethodName() +

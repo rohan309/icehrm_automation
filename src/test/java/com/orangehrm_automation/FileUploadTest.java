@@ -4,6 +4,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import com.icecrm_automation.utility.BaseClass;
+import com.icecrm_automation.utility.ExtentTestManager;
 import com.icecrm_automation.utility.PropertyHandling;
 import com.orangehrm_automation.pages.MyInfoPage;
 import com.orangehrm_automation.pages.OrageHrmLoginPage;
@@ -16,7 +17,7 @@ public class FileUploadTest extends BaseClass{
 	
 	@BeforeClass
 	public void beforClass() {
-		orangeHrmLoginPage = new OrageHrmLoginPage();
+		orangeHrmLoginPage = new OrageHrmLoginPage(driver);
 		myInfoPage = new MyInfoPage();
 		property = new PropertyHandling();
 		String username = property.getProperties("orangeHrmUN");
@@ -26,6 +27,7 @@ public class FileUploadTest extends BaseClass{
 		launchBrowser(browser);
 		driver.get(url);
 		orangeHrmLoginPage.login(username, password);
+		ExtentTestManager.getTest().info("successfully  login with valid  credentials");
 	}
 	
 	@Test
@@ -35,6 +37,7 @@ public class FileUploadTest extends BaseClass{
 		click(myInfoPage.addImg);
 		this.fileUpload("C:\\Users\\Admin\\Desktop\\Capture.PNG");
 		System.out.println("File Uploaded successfully...");
+		ExtentTestManager.getTest().info("File Uploaded successfully...");
 	}
 
 }

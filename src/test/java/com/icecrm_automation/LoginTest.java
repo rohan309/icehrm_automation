@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 
 import com.ice_hrm_automation.pages.LoginPage;
 import com.icecrm_automation.utility.BaseClass;
+import com.icecrm_automation.utility.ExtentTestManager;
 import com.icecrm_automation.utility.PropertyHandling;
 
 public class LoginTest extends BaseClass {
@@ -30,10 +31,14 @@ public class LoginTest extends BaseClass {
 	@Test(dataProvider = "getLoginData")
 	public void verifyLogin(String username, String password, String errorMsg) {
 		loginPage.login(username, password);
+		
+		ExtentTestManager.getTest().info("successfully logged in to application");
+		
 		if (!username.isEmpty() && !password.isEmpty()) {
 			String errorMessage = driver.findElement(loginPage.errorMsg).getText();
 			//String winText = driver.findElement(loginPage.homeText).getText();
 			Assert.assertEquals(errorMessage, errorMsg);
+			ExtentTestManager.getTest().info("successfully verified login credentials");
 			
 			/*
 			 * if (errorMessage.equals("Login failed")) { //error at this line

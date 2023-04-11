@@ -8,6 +8,7 @@
     <classes> 
       <class name="com.icecrm_automation.LoginTest"/>
       <class name="com.orangehrm_automation.FileUploadTest"></class>
+      <class name="com.icecrm_automation.LoginTestIceHrm"></class>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

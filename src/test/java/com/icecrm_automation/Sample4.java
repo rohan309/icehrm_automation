@@ -33,7 +33,7 @@ public class Sample4 extends BaseClass {
 		 * }
 		 */
 
-		driver.close();
+//		driver.close();
 
 	}
 }
